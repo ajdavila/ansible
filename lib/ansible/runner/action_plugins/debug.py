@@ -39,7 +39,10 @@ class ActionModule(object):
         kv = utils.parse_kv(module_args)
         args.update(kv)
         if not 'msg' in args:
-            args['msg'] = 'Hello world!'
+            if 'message' in args:
+                args['msg'] = args['message']
+            else:
+                args['msg'] = 'Hello world!'
 
         if 'fail' in args and utils.boolean(args['fail']):
             result = dict(failed=True, msg=args['msg'])
